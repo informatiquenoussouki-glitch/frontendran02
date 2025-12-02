@@ -1,0 +1,790 @@
+/* ==========================================================================
+   LAYOUT GÉNÉRAL (Desktop)
+   --------------------------------------------------------------------------
+   - Grille 2 colonnes : sidebar fixe (240px) + contenu flexible
+   - max-width pour centrer le layout sur grands écrans
+   - align-items:stretch pour garder menu et contenu à la même hauteur
+   ========================================================================== */
+.admin-layout{
+  display:grid;
+  grid-template-columns: 240px 1fr;
+  gap:1.2rem;
+  max-width:1300px;
+  margin:1.5rem auto;
+  padding:0 1rem;
+  align-items:stretch;                /* même hauteur menu/carte */
+}
+
+
+/* ==========================================================================
+   SIDEBAR
+   --------------------------------------------------------------------------
+   - Carte blanche avec bord/ombre
+   - Contenu sticky pour garder la navigation visible au scroll
+   - Nav links avec états : normal / hover / active / disabled
+   ========================================================================== */
+.sidenav{
+  border:1px solid #eee;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+  display:flex;
+}
+.sidenav-inner{ position:sticky; top:0; padding:.9rem; width:100%; }
+.sidenav-title{ font-weight:800; margin-bottom:.6rem; }
+.sidenav-nav{ display:flex; flex-direction:column; gap:.35rem; }
+
+.navlink{
+  display:block; padding:.55rem .7rem; border-radius:10px;
+  text-decoration:none; color:#1f2937; border:1px solid transparent;
+}
+.navlink:hover{ background:#f7fafc; }
+.navlink.active{ background:#eef6fd; border-color:#bfdbfe; color:#0b5cab; font-weight:700; }
+.navlink.disabled{ opacity:.55; cursor:not-allowed; border:dashed 1px #eee; background:#fafafa; }
+
+.nav-section{
+  margin:.8rem .2rem .35rem; padding-top:.35rem;
+  font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:#64748b; border-top:1px dashed #e5e7eb;
+}
+
+
+/* ==========================================================================
+   TITRES / CONTENU
+   --------------------------------------------------------------------------
+   - Espacement simple pour les H2 dans la zone de contenu
+   ========================================================================== */
+.content h2{ margin:.2rem 0 1rem; }
+
+
+/* ==========================================================================
+   FORM GRID (Grilles de formulaire)
+   --------------------------------------------------------------------------
+   - .row-1 / .row-2 / .row-4 = helpers pour composer des lignes responsives
+   - .field : conteneur d’un label + contrôle(s)
+   ========================================================================== */
+.form{ display:grid; gap:.7rem; }
+.row-1{ display:grid; grid-template-columns:1fr; gap:.6rem; }
+.row-2{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+.row-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; }
+
+.field{ display:flex; flex-direction:column; gap:.35rem; }
+.field > label{ font-size:.9rem; font-weight:600; color:#334155; }
+
+/* Champs : padding confortable + bord arrondi
+   font-size=16px pour éviter le zoom auto sur iOS */
+input,select,textarea{
+  padding:.55rem; border:1px solid #ccc; border-radius:8px; font-size:16px; /* évite zoom iOS */
+}
+
+/* Champ readonly (ex: valeurs calculées) */
+.readonly{ padding:.55rem; border:1px dashed #ddd; border-radius:8px; background:#fafafa; }
+
+/* Zone d’actions (boutons en ligne, wrap si manque de place) */
+.actions{ display:flex; gap:.6rem; flex-wrap:wrap; }
+
+
+/* ==========================================================================
+   BOUTONS
+   --------------------------------------------------------------------------
+   - .btn : bouton principal (bleu)
+   - variantes : .ghost (contour), .danger (rouge)
+   - disabled : opacité et curseur
+   ========================================================================== */
+.btn{
+  padding:.85rem 1.25rem; font-size:1rem; min-width:120px;
+  border:1px solid #0ea5e9; background:#0ea5e9; color:#fff;
+  border-radius:12px; cursor:pointer;
+}
+.btn.ghost{ background:#fff; color:#0ea5e9; }
+.btn.danger{ border-color:#ef4444; background:#ef4444; }
+button[disabled]{ opacity:.6; cursor:not-allowed; }
+
+
+/* ==========================================================================
+   IMAGE (Formulaire)
+   --------------------------------------------------------------------------
+   - .row-image : 2 colonnes (champ upload + aperçu)
+   - .preview-box : cadre avec image en cover
+   ========================================================================== */
+.row-image{ grid-template-columns:1fr 260px; align-items:start; }
+.preview-box{
+  width:100%; height:160px; border:1px solid #e5e7eb; border-radius:10px;
+  background:#f8fafc center/cover no-repeat; overflow:hidden;
+}
+
+
+/* ==========================================================================
+   HÔTELS (Helpers)
+   --------------------------------------------------------------------------
+   - .stars : couleur des étoiles
+   - .select-with-stars : select + pastille étoiles alignés
+   ========================================================================== */
+.stars{ font-weight:700; color:#f59e0b; }
+.hotel-line .select-with-stars{ display:grid; grid-template-columns:1fr auto; gap:.5rem; align-items:center; }
+
+
+/* ==========================================================================
+   TARIFS (Groupes + symbole € positionné)
+   ========================================================================== */
+.prices-group,
+.group{ border:1px dashed #e5e7eb; border-radius:10px; padding:.6rem .8rem; }
+.prices-group > legend,
+.group > legend{ font-weight:700; color:#334155; padding:0 .35rem; }
+
+.input-euro{ position:relative; }
+.input-euro input{ padding-right:1.6rem; }
+.input-euro span{
+  position:absolute; right:.55rem; top:50%; transform:translateY(-50%);
+  color:#64748b; pointer-events:none;
+}
+
+
+/* ==========================================================================
+   LISTES / TABLES
+   --------------------------------------------------------------------------
+   - .tbl : table responsive (min-width forcée, scroll horizontal au besoin)
+   - .list-wrap : permet le scroll horizontal sur petits écrans
+   - .action : colonne d’actions compactes
+   ========================================================================== */
+.list-wrap{ grid-column:1 / -1; overflow-x:auto; }
+.tbl{ width:100%; border-collapse:collapse; margin-top:1rem; min-width:760px; } /* scroll sur petits écrans */
+.tbl th, .tbl td{ padding:.55rem; border-top:1px solid #eee; }
+.empty{ opacity:.7; margin-top:1rem; }
+.err{ color:#e11d48; }
+
+/* colonnes actions */
+.action{ text-align:center; white-space:nowrap; }
+
+
+/* ==========================================================================
+   GALERIE (grille responsive d’images)
+   ========================================================================== */
+.gallery{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:.6rem;
+}
+.thumb{
+  position:relative; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden;
+  background:#f8fafc; aspect-ratio:1/1;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.thumb-del{
+  position:absolute; top:6px; right:6px;
+  border:none; background:rgba(0,0,0,.5); color:#fff;
+  border-radius:6px; padding:.15rem .35rem; cursor:pointer;
+}
+
+
+/* ==========================================================================
+   ICONES D’ACTION (petits boutons ronds pour éditer/supprimer/voir)
+   ========================================================================== */
+
+.icon-btn:hover {
+  color: #1d4ed8;
+  transform: scale(1.2);
+}
+.icon-btn{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #2563eb;
+  margin-right: 8px;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  
+}
+
+.icon-btn svg{ width:18px; height:18px; pointer-events:none; }
+.icon-btn:hover{ background:#eaf6ff; }
+.icon-btn:active{ transform:translateY(1px); }
+
+.icon-btn.danger{ color:#9b9a9a; }
+.icon-btn.danger:hover{ background:#fff5f5; }
+
+.icon-btn.info{  color:#1e3a8a; font-size: 28px; height:18px; align-items: center;}
+.icon-btn.info:hover{ background:#e6f4ff; }
+
+
+/* ==========================================================================
+   VALIDATION / AIDE (messages d’erreur & style des champs invalides)
+   ========================================================================== */
+small.error{ color:#ef4444; }
+input.invalid{ border-color:#ef4444; background:#fff7f7; }
+.muted{ color:#64748b; }
+input[type="date"]{ cursor:pointer; }
+
+
+/* ==========================================================================
+   EN-TÊTE DE PAGE + BOUTON D’AJOUT
+   --------------------------------------------------------------------------
+   - .page-head : aligner titre + CTA
+   - .btn-add-hotel : bouton add cohérent avec design system
+   ========================================================================== */
+.page-head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:.8rem; margin-bottom:.8rem;
+}
+.btn-add-hotel{
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:.55rem .95rem; border:1px solid #0ea5e9; background:#0ea5e9; color:#fff;
+  border-radius:12px; text-decoration:none; font-weight:600; line-height:1;
+}
+.btn-add-hotel:hover{ filter:brightness(1.05); }
+
+
+/* ==========================================================================
+   RWD — STRUCTURE / BOUTONS
+   --------------------------------------------------------------------------
+   - ≤640px : header sur 2 lignes + bouton plein largeur
+   - ≤560/360px : réduire la taille des icônes
+   ========================================================================== */
+@media (max-width:640px){
+  .page-head{ flex-direction:column; align-items:flex-start; }
+  .btn-add-hotel{ width:100%; justify-content:center; }
+  .tbl{ min-width:0; }                 /* annule min-width:760px en mobile */
+}
+@media (max-width:560px){
+  .icon-btn,
+  .tbl td.actions .icon-btn{ width:32px; height:32px; margin-left:0; }
+  .icon-btn svg,
+  .tbl td.actions .icon-btn svg{ width:16px; height:16px; }
+}
+@media (max-width:360px){
+  .icon-btn{ width:28px; height:28px; }
+  .icon-btn svg{ width:14px; height:14px; }
+}
+
+
+/* ==========================================================================
+   TABLE RWD — DESKTOP (>=980px)
+   --------------------------------------------------------------------------
+   - Ajoute un cadre propre aux tableaux larges
+   ========================================================================== */
+@media (min-width:980px){
+  .tbl.rwd{
+    border:1px solid #e5e7eb; border-radius:12px;
+    border-collapse:separate; border-spacing:0;
+  }
+  .tbl.rwd thead th{ border-bottom:1px solid #e5e7eb; }
+  .tbl.rwd thead th + th,
+  .tbl.rwd tbody td + td{ border-left:1px solid #e5e7eb; }
+  .tbl.rwd thead th:last-child,
+  .tbl.rwd tbody td:last-child{ border-right:1px solid #e5e7eb; }
+  .tbl.rwd thead th:first-child{ border-top-left-radius:12px; }
+  .tbl.rwd thead th:last-child{  border-top-right-radius:12px; }
+  .tbl.rwd tbody tr:last-child td:first-child{ border-bottom-left-radius:12px; }
+  .tbl.rwd tbody tr:last-child td:last-child{  border-bottom-right-radius:12px; }
+  
+  .tbl.rwd th {
+  background: #e0e7ff;
+  color: #1e3a8a;
+  text-align: left;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+
+}
+
+
+/* ==========================================================================
+   TABLE RWD — MOBILE (<=979px)
+   --------------------------------------------------------------------------
+   - Convertit le tableau en "cartes"
+   - Chaque <td> affiche son label via data-label
+   - Séparateurs horizontaux + une ligne verticale centrale
+   ========================================================================== */
+@media (max-width:979px){
+  .tbl.rwd thead{ display:none; }
+
+  .tbl.rwd tbody tr{
+    display:block; background:#fff;
+    border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;
+    margin:12px 0;
+  }
+
+  .tbl.rwd tbody td{
+    display:grid; grid-template-columns:1fr 1fr;   /* 50 | 50 */
+    justify-items:center; align-items:center;
+    gap:12px; padding:12px; position:relative;
+    border:0; text-align:center;
+  }
+  .tbl.rwd tbody td + td{ border-top:1px solid #e5e7eb; } /* horizontales */
+
+  .tbl.rwd tbody td::before{
+    content:attr(data-label); font-weight:600; color:#64748b; text-align:center;
+  }
+  .tbl.rwd tbody td::after{
+    content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:#e5e7eb; /* verticale */
+  }
+
+  .tbl.rwd tbody td.action{
+    display:block; text-align:center; border-top:1px solid #e5e7eb;
+  }
+  .tbl.rwd tbody td.action::before,
+  .tbl.rwd tbody td.action::after{ display:none; }
+
+  /* bons sélecteurs pour la ligne d'actions (compat ancienne classe .action-inline) */
+  .tbl.rwd tbody td.action .actions-inline,
+  .tbl.rwd tbody td.action .action-inline{
+    display:flex; justify-content:center; gap:8px; padding:8px 12px 10px;
+  }
+}
+
+
+/* ==========================================================================
+   RWD — BLOCS SPÉCIFIQUES
+   --------------------------------------------------------------------------
+   - Image + aperçu : 1 colonne en mobile
+   - Tarifs : 4→2 colonnes (tablet), 2→1 (mobile)
+   ========================================================================== */
+@media (max-width: 720px){
+  .form .row-2.row-image{ display:grid; grid-template-columns:1fr !important; gap:12px; }
+  .row-image .preview-box{ height:160px; }
+}
+@media (max-width:1024px){
+  .prices-group .row-4{ grid-template-columns:1fr 1fr; gap:12px; }
+}
+@media (max-width:720px){
+  .prices-group .row-4{ grid-template-columns:1fr !important; gap:10px; }
+  .prices-group .field{ width:100%; }
+  .prices-group .input-euro{ display:flex; align-items:center; }
+  .prices-group .input-euro input{ width:100%; }
+}
+
+
+/* ==========================================================================
+   LISTES "INCLUS/EXCLUS" (lignes dynamiques avec bouton poubelle)
+   ========================================================================== */
+.line-input-wrap{
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.line-input{
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d9e1ec;
+  border-radius: 8px;
+  padding-right: 2.6rem; /* place pour l’icône à droite */
+  outline: none;
+}
+.line-input:focus{
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96,165,250,.25);
+}
+
+/* bouton icône à l’intérieur du champ (poubelle) */
+.line-icon-btn{
+  position: absolute;
+  top: 50%;
+  right: .5rem;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.line-icon-btn:hover{ background:#fee2e2; border-color:#fca5a5; }
+
+/* style de l’icône (tracé rouge) */
+.icon-trash{
+  width: 18px; height: 18px;
+  fill: none;
+  stroke: #ef4444;        /* rouge */
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ==========================================================================
+   PROGRAMME JOUR PAR JOUR (composant de ligne)
+   ========================================================================== */
+.program-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.chip {
+  min-width: 72px;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Helpers de largeur totale */
+.field.full > input,
+.field.full > textarea,
+.w-full {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* bloc "un jour" sur une seule colonne pleine largeur */
+.row-program {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+}
+
+/* (option) poubelle posée dans le champ (alternative au bouton intégré) */
+.day-delete {
+  position: absolute;
+  right: 8px;
+  top: 36px;    /* ajuste selon ton label/marge */
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e05252;
+  color: #e05252;
+  background: #fff;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+/* input + action à droite (version absolue) */
+.input-with-action {
+  position: relative;
+}
+
+/* espace réservé pour le bouton à droite */
+.input-with-action > input {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 44px; /* assez large pour le bouton */
+}
+
+/* bouton poubelle aligné au centre vertical de l'input */
+.icon-btn.delete {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e05252;
+  color: #e05252;
+  background: #fff;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
+}
+.icon-btn.delete:hover {
+  background: #ffecec;
+}
+
+/* Effet visuel sur une illustration d’avion (option déco) */
+.flight-card .plane-hero svg {
+  filter: drop-shadow(0 0 16px rgba(255,255,255,.8));
+}
+
+
+/* ==========================================================================
+   BADGES — Type d’Omra
+   ========================================================================== */
+.type-badge{
+  display:inline-block;
+  padding:.15rem .5rem;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  line-height:1;
+}
+.type-badge--economique{ background:#e6f7ec; color:#137a3a; }
+.type-badge--confort   { background:#edf6ff; color:#155a9e; }
+.type-badge--ramadan   { background:#fff4e6; color:#b25d00; }
+
+
+/* ==========================================================================
+   BADGES — Statut (2 jeux pour compat : casse Haute/Basse)
+   --------------------------------------------------------------------------
+   - 1er bloc : classes avec casse initiale (Publier/Brouillon/Archiver)
+   - 2e bloc : mêmes couleurs pour variantes minuscules (publier/brouillon/archiver)
+   ========================================================================== */
+.status-badge{display:inline-block;padding:.18rem .5rem;border-radius:999px;
+  font-size:.75rem;font-weight:700;border:1px solid transparent}
+.status--Publier{background:#e7f5ee;color:#147f4b;border-color:#b7e3cb}
+.status--Brouillon{background:#fff8e1;color:#9a5d00;border-color:#f6d58f}
+.status--Archiver{background:#f1f5f9;color:#475569;border-color:#cbd5e1}
+
+.status-badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:.78rem;
+  border:1px solid;
+}
+.status--publier   { background:#e8f7ef; color:#0f8a3c; border-color:#a7e3b7; }
+.status--brouillon { background:#fae1e1a9; color:#b42318; border-color:#f8caca; }
+.status--archiver  { background:#f4f5f8; color:#6b7280; border-color:#e5e7eb; }
+
+
+/* ==========================================================================
+   BLOCS "INCLUT / N’INCLUT PAS" (titres + teintes)
+   ========================================================================== */
+.prest-title{ display:block; font-weight:700; margin-bottom:6px; }
+.prest-title.is-include{ color:#0a7a7a; }  /* teal */
+.prest-title.is-exclude{ color:#e18700; }  /* orange */
+
+/* encadrement léger teinté par colonne (facultatif) */
+.prest-include .line-input{ border:1px solid #0a7a7a2b; }
+.prest-exclude .line-input{ border:1px solid #e187002b; }
+.prest-include .line-input:focus{ outline:2px solid #0a7a7a55; }
+.prest-exclude .line-input:focus{ outline:2px solid #e1870055; }
+
+/* bouton “+ Ajouter une ligne” coloré par colonne */
+.add-include{
+  background:#0a7a7a; border-color:#0a7a7a; color:#fff;
+}
+.add-include:hover{ filter:brightness(.98); }
+
+.add-exclude{
+  background:#e18700; border-color:#e18700; color:#fff;
+}
+.add-exclude:hover{ filter:brightness(1.02); }
+
+/* petite teinte sur l’icône poubelle au survol (optionnel) */
+.prest-include .line-icon-btn:hover{ color:#0a7a7a; }
+.prest-exclude .line-icon-btn:hover{ color:#e18700; }
+
+
+/* ==========================================================================
+   PROGRAMME — Carte visuelle d’un “jour”
+   ========================================================================== */
+.program-row{
+  position: relative;
+  background:#fff;
+  border:1px solid #eef2f7;
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  margin-bottom:12px;
+}
+
+/* Forcer les champs à prendre toute la largeur */
+.program-row .field,
+.program-row .field.full{ width:100%; }
+
+/* Pastille numérotée en haut à gauche */
+.program-badge{
+  position:absolute;
+  top:-10px; left:-10px;
+  width:28px; height:28px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  font-weight:800; color:#fff;
+  background:linear-gradient(180deg,#f3a63a,#e18700);
+  border:4px solid #fff;                /* liseré blanc */
+  box-shadow:0 8px 18px rgba(225,135,0,.35);
+}
+@media (min-width:700px){
+  .program-badge{ width:32px; height:32px; top:-12px; left:-12px; }
+}
+
+/* aide visuelle pour la ligne titre + bouton */
+.input-with-action{
+  display:flex; align-items:center; gap:8px;
+}
+.input-with-action input{ flex:1; }
+
+/* bouton “+ Ajouter un jour” (style cohérent) */
+.btn-add {
+  padding:.85rem 1.25rem; font-size:1rem; min-width:120px;
+  border:1px solid #f3a63a;; background:#f3a63a;; color:#fff;
+  border-radius:12px; cursor:pointer;
+  
+}
+
+
+/* ==========================================================================
+   SELECTS Typés (Type d’Omra + Statut)
+   --------------------------------------------------------------------------
+   - .type-select : teinte selon la valeur (économique / confort / ramadan)
+   - .status-select : teinte selon statut (brouillon / publier / archiver)
+   - Les règles optionnelles sur <option> dépendent des navigateurs
+   ========================================================================== */
+/* base */
+.type-select{
+  width:100%;
+  padding:.55rem .75rem;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  font-weight:700;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* Économique -> vert/teal */
+.type-select.is-economique{
+  color:#0a7a7a;
+  background:#e8f8ee;
+  border-color:#cde9df;
+}
+
+/* Confort -> bleu doux */
+.type-select.is-confort{
+  color:#0b5cab;
+  background:#eef6ff;
+  border-color:#cfe3ff;
+}
+
+/* Ramadan -> orange doux */
+.type-select.is-ramadan{
+  color:#b15e00;
+  background:#fff4e5;
+  border-color:#ffd9a6;
+}
+
+/* (optionnel) teinte du texte des <option> — support variable selon navigateur */
+#omra-type option[value="economique"]{ color:#0a7a7a; }
+#omra-type option[value="confort"]   { color:#0b5cab; }
+#omra-type option[value="ramadan"]   { color:#b15e00; }
+
+
+/* style de base */
+.status-select{
+  width:100%;
+  padding:.55rem .75rem;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  font-weight:700;
+  transition:background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* Brouillon → orange doux */
+.status-select.is-draft{
+  color:#b42318;
+  background:#f8c7c4a9;
+  border-color:#ddafab;
+}
+
+/* Publier → vert/teal doux */
+.status-select.is-published{
+  color:#0a7a7a;
+  background:#e8f8eeda;
+  border-color:#cde9df;
+}
+
+/* Archiver → gris */
+.status-select.is-archived{
+  color:#6b7280;
+  background:#f3f4f6;
+  border-color:#e5e7eb;
+}
+
+/* (optionnel) teinte des <option> – support selon navigateur */
+#f-status option[value="Brouillon"]{ color:#b42318; }
+#f-status option[value="Publier"]  { color:#0a7a7a; }
+#f-status option[value="Archiver"] { color:#6b7280; }
+
+
+/* ==========================================================================
+   REDONDANCE LÉGÈRE (positions différentes du même header)
+   --------------------------------------------------------------------------
+   - doublon nécessaire si utilisé dans deux contextes différents du DOM
+   ========================================================================== */
+.page-head{
+  display:flex; align-items:center; gap:10px; justify-content:space-between; flex-wrap:wrap;
+}
+
+
+/* ==========================================================================
+   BARRE DE RECHERCHE + FILTRES (liste Omras)
+   ========================================================================== */
+.searchbar{
+  position:right; display:flex; align-items:right;
+  min-width:260px; width: min(340px, 100%); /* responsive */
+}
+
+.searchbar input{
+  width:100%;
+  padding:9px 32px 9px 34px;
+  border:1px solid #e5e7eb; border-radius:10px;
+  outline:0; transition:border-color .15s ease, box-shadow .15s ease;
+}
+.searchbar input:focus{
+  border-color:#bfdbfe; box-shadow:0 0 0 3px rgba(191,219,254,.5);
+}
+.searchbar .clear{
+  position:absolute; right:6px; width:26px; height:26px;
+  border:0; border-radius:6px; background:#eef2f7; color:#334155; cursor:pointer;
+}
+.empty{ text-align:center; color:#64748b; padding:16px; }
+
+.filters{
+  display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  margin:10px 0 6px;
+}
+.flt{
+  height:36px; border:1px solid #e5e7eb; border-radius:10px;
+  padding:6px 10px; background:#fff;
+}
+.btn.small{ padding:6px 10px; border-radius:8px; }
+
+
+/* ==========================================================================
+   RWD — FORMULAIRE EN 1 COLONNE (≤720px)
+   --------------------------------------------------------------------------
+   - Toutes les lignes multi-colonnes repassent à une seule colonne
+   - Boutons en pile
+   ========================================================================== */
+@media (max-width: 720px){
+  /* any 2-cols/4-cols row becomes a single column */
+  .row-2,
+  .row-4{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* the hotel line (select + stars) must also stack */
+  .hotel-line .select-with-stars{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* price fields group that uses .row-4 */
+  .prices-group .row-4{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* make controls naturally fill the line */
+  .field,
+  .field > *{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* buttons block nicely */
+  .actions{
+    flex-direction: column;
+    gap: .5rem;
+  }
+}
+
+/* ultra-small phones : étendre les boutons au full width */
+@media (max-width: 380px){
+  .btn{ min-width: 0; width: 100%; }
+}
+
+
+/* ==========================================================================
+   THÈME “DANGER” pour un composant popup spécifique (ex.: SimplePopup)
+   ========================================================================== */
+.spu--danger .spu-badge { background:#e11d48 !important; }
+.spu--danger .spu-button{ background:#e11d48 !important; }
+
+
+
+

@@ -1,0 +1,115 @@
+import { createRouter, createWebHistory } from "vue-router";
+
+// 🔹 Pages principales (ton frontend)
+import Home from "../pages/Home.vue";
+import Login from "../pages/Client/Login.vue";
+import Register from "../pages/Register.vue";
+import Contact from "../pages/Contact.vue";
+import About from "../pages/About.vue";
+import ForgotPassword from "../pages/Client/ForgotPassword.vue";
+import ResetPassword from "../pages/ResetPassword.vue";
+import OmrasPage from "../pages/Omra/OmrasPage.vue";
+import OmraDetailPage from "../pages/Omra/OmraDetailPage.vue";
+import OmrasEco from "../pages/Omra/OmrasEco.vue";
+import OmrasConfort from "../pages/Omra/OmrasConfort.vue";
+import OmrasRamadan from "../pages/Omra/OmrasRamadan.vue";
+import HotelView from "../pages/Hotel/HotelView.vue";
+import NotFound from "../pages/NotFound.vue";
+
+// 🔹 Pages Omra / site public (pages_crud)
+import Dashboard from "../components/admin/Dashboard.vue";
+import Clients from "../components/admin/Clients.vue";
+
+import AdminOmrasList from "../components/admin/AdminOmra/AdminOmrasList.vue";
+import AdminOmraCreate from "../components/admin/AdminOmra/AdminOmraCreate.vue";
+import AdminOmraEdit from "../components/admin/AdminOmra/AdminOmraEdit.vue";
+
+import AdminHotelsList from "../components/admin/AdminHotel/AdminHotelsList.vue";
+import AdminHotelCreate from "../components/admin/AdminHotel/AdminHotelCreate.vue";
+import AdminHotelEdit from "../components/admin/AdminHotel/AdminHotelEdit.vue";
+
+
+
+
+// 🔹 CRUD Admin (dans components_crud/admin)
+
+
+import ReservationForm from "../pages/ReservationForm.vue"; // ✅ dossier "pages"
+
+// 🔹 Page Admin Devis
+import DevisPage from "../pages/DevisPage.vue";
+
+
+const routes = [
+  // 🔸 Pages principales
+  { path: "/", name: "Home", component: Home },
+  { path: "/login", name: "Login", component: Login },
+  { path: "/register", name: "Register", component: Register },
+  { path: "/admin/dashboard", name: "Dashboard", component: Dashboard },
+  { path: "/contact", name: "Contact", component: Contact },
+  { path: "/admin/clients", name: "Clients", component: Clients },
+  { path: "/about", name: "About", component: About },
+  { path: "/forgot-password", name: "ForgotPassword", component: ForgotPassword },
+  { path: "/reset-password", name: "ResetPassword", component: ResetPassword },
+
+  // 🔸 Pages publiques Omra
+ 
+  { path: "/omras", name: "OmrasPage", component: OmrasPage },
+  { path: "/omra/:id", name: "omra-detail", component: OmraDetailPage, props: true },
+  { path: "/omra-eco", name: "OmrasEco", component: OmrasEco },
+  { path: "/omra-confort", name: "OmrasConfort", component: OmrasConfort },
+  { path: "/omra-ramadan", name: "OmrasRamadan", component: OmrasRamadan },
+
+  // 🔸 Pages Admin (CRUD)
+  { path: "/admin/omras", name: "AdminOmrasList", component: AdminOmrasList },
+  { path: "/admin/omra/create", name: "AdminOmraCreate", component: AdminOmraCreate },
+  { path: "/admin/omra/edit/:id", name: "admin-omras-edit", component: AdminOmraEdit, props: true },
+
+  { path: "/admin/hotels", name: "AdminHotelsList", component: AdminHotelsList },
+  { path: "/admin/hotel/create", name: "AdminHotelCreate", component: AdminHotelCreate },
+  { path: "/admin/hotel/edit/:id", name: "admin-hotels-edit", component: AdminHotelEdit, props: true },
+  { path: "/hotel/:id", name: "hotel-view", component: HotelView, props: true },
+
+
+{ path: "/admin/devis", name: "AdminDevis", component: DevisPage },
+
+
+
+
+  // 🔸 Page 404
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
+
+
+  {
+    path: "/reservations/:id", // ✅ dynamique + cohérent avec ton lien
+    name: "ReservationForm",
+    component: ReservationForm,
+    props: true,
+  },
+
+
+{
+  path: '/payment-success',
+  name: 'payment.success',
+  component: () => import('../pages/SuccessPayment.vue')
+},
+
+{
+  path: '/payment-cancel',
+  name: 'payment.cancel',
+  component: () => import('../pages/CancelPayment.vue')
+},
+
+
+
+];
+
+
+
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;
