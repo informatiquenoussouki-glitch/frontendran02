@@ -1,0 +1,497 @@
+/* Scope possible via wrapper .omra-create ou .page--omra */
+.omra-create, .page--omra{
+  /* variables locales Omra */
+  --omra-green:#0a7a7a;
+  --omra-blue:#0b5cab;
+  --omra-orange:#b15e00;
+  padding: 20px;
+  background: #f9fafb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+/* === Sélecteur Type d'Omra === */
+
+/* 🟢 Economique */
+.type-select.is-economique {
+  background: #e6f7ec !important;
+  color: #137a3a !important;
+  border-color: #137a3a !important;
+}
+
+/* 🔵 Confort */
+.type-select.is-confort {
+  background: #edf6ff !important;
+  color: #155a9e !important;
+  border-color: #155a9e !important;
+}
+
+/* 🟡 Ramadan */
+.type-select.is-ramadan {
+  background: #fff4e6 !important;
+  color: #b25d00 !important;
+  border-color: #b25d00 !important;
+}
+
+/* Bonus : changement couleurs des options */
+
+.type-select.is-economique option:checked { color: #137a3a; }
+.type-select.is-confort option:checked    { color: #155a9e; }
+.type-select.is-ramadan option:checked    { color: #b25d00; }
+
+
+/* === Style dynamique du SELECT Statut === */
+
+/* Brouillon */
+.status-select.is-draft {
+  background: #fae1e1a9 !important;
+  color: #b42318 !important;
+  border-color: #f8caca !important;
+}
+
+/* Publier */
+.status-select.is-published {
+  background: #e8f7ef !important;
+  color: #0f8a3c !important;
+  border-color: #a7e3b7 !important;
+}
+
+/* Archiver */
+.status-select.is-archived {
+  background: #f4f5f8 !important;
+  color: #6b7280 !important;
+  border-color: #e5e7eb !important;
+}
+
+/* === Harmonisation des options dans la liste === */
+.status-select option[value="Brouillon"] {
+  color: #b42318 !important;
+}
+
+.status-select option[value="Publier"] {
+  color: #0f8a3c !important;
+}
+
+.status-select option[value="Archiver"] {
+  color: #6b7280 !important;
+}
+
+/* Groupes Tarifs + symbole € */
+.omra-create .prices-group,
+.page--omra .prices-group,
+.omra-create .group,
+.page--omra .group{
+  border:1px dashed #e5e7eb; border-radius:10px; padding:.6rem .8rem;
+}
+.omra-create .prices-group>legend,
+.page--omra .prices-group>legend,
+.omra-create .group>legend,
+.page--omra .group>legend{
+  font-weight:700; color:#334155; padding:0 .35rem;
+}
+.omra-create .input-euro, .page--omra .input-euro{ position:relative; }
+.omra-create .input-euro input, .page--omra .input-euro input{ padding-right:1.6rem; }
+.omra-create .input-euro span, .page--omra .input-euro span{
+  position:absolute; right:.55rem; top:50%; transform:translateY(-50%);
+  color:#64748b; pointer-events:none;
+}
+
+/* Programme jour par jour */
+.omra-create .program-row,
+.page--omra .program-row{
+  position: relative;
+  background:#fff;
+  border:1px solid #eef2f7;
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  margin-bottom:12px;
+}
+.omra-create .program-row .field,
+.page--omra .program-row .field,
+.omra-create .program-row .field.full,
+.page--omra .program-row .field.full{ width:100%; }
+
+.omra-create .program-badge,
+.page--omra .program-badge{
+  position:absolute;
+  top:-12px; left:-12px;
+  width:32px; height:32px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  font-weight:800; color:#fff;
+  background:linear-gradient(180deg,#f3a63a,#e18700);
+  border:4px solid #fff;
+  box-shadow:0 8px 18px rgba(225,135,0,.35);
+}
+
+.omra-create .input-with-action, .page--omra .input-with-action{ display:flex; align-items:center; gap:8px; }
+.omra-create .input-with-action input, .page--omra .input-with-action input{ flex:1; }
+
+.omra-create .btn-add, .page--omra .btn-add{
+  padding:.85rem 1.25rem; font-size:1rem; min-width:120px;
+  border:1px solid #f3a63a; background:#f3a63a; color:#fff;
+  border-radius:12px; cursor:pointer;
+}
+
+/* Selects typés (Type + Statut) */
+.omra-create .type-select, .page--omra .type-select{
+  width:100%; padding:.55rem .75rem; border:1px solid #e5e7eb; border-radius:8px;
+  font-weight:700; transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.omra-create .type-select.is-economique, .page--omra .type-select.is-economique{
+  color:var(--omra-green); background:#e8f8ee; border-color:#cde9df;
+}
+.omra-create .type-select.is-confort, .page--omra .type-select.is-confort{
+  color:var(--omra-blue); background:#eef6ff; border-color:#cfe3ff;
+}
+.omra-create .type-select.is-ramadan, .page--omra .type-select.is-ramadan{
+  color:var(--omra-orange); background:#fff4e5; border-color:#ffd9a6;
+}
+
+.omra-create .status-select, .page--omra .status-select{
+  width:100%; padding:.55rem .75rem; border:1px solid #e5e7eb; border-radius:8px;
+  font-weight:700; transition:background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.omra-create .status-select.is-draft, .page--omra .status-select.is-draft{
+  color:#b42318; background:#f8c7c4a9; border-color:#ddafab;
+}
+.omra-create .status-select.is-published, .page--omra .status-select.is-published{
+  color:#0a7a7a; background:#e8f8eeda; border-color:#cde9df;
+}
+.omra-create .status-select.is-archived, .page--omra .status-select.is-archived{
+  color:#6b7280; background:#f3f4f6; border-color:#e5e7eb;
+}
+
+/* Listes "Inclut / N’inclut pas" */
+.omra-create .prest-title, .page--omra .prest-title{ display:block; font-weight:700; margin-bottom:6px; }
+.omra-create .prest-title.is-include, .page--omra .prest-title.is-include{ color:#0a7a7a; }
+.omra-create .prest-title.is-exclude, .page--omra .prest-title.is-exclude{ color:#e18700; }
+
+.omra-create .prest-include .line-input, .page--omra .prest-include .line-input{ border:1px solid #0a7a7a2b; }
+.omra-create .prest-exclude .line-input, .page--omra .prest-exclude .line-input{ border:1px solid #e187002b; }
+.omra-create .prest-include .line-input:focus, .page--omra .prest-include .line-input:focus{ outline:2px solid #0a7a7a55; }
+.omra-create .prest-exclude .line-input:focus, .page--omra .prest-exclude .line-input:focus{ outline:2px solid #e1870055; }
+
+.omra-create .add-include, .page--omra .add-include{ background:#0a7a7a; border-color:#0a7a7a; color:#fff; }
+.omra-create .add-exclude, .page--omra .add-exclude{ background:#e18700; border-color:#e18700; color:#fff; }
+
+.omra-create .line-input-wrap, .page--omra .line-input-wrap{ position: relative; margin-bottom: 10px; }
+.omra-create .line-input, .page--omra .line-input{
+  width: 100%; height: 40px; border: 1px solid #d9e1ec; border-radius: 8px; padding-right: 2.6rem; outline: none;
+}
+.omra-create .line-input:focus, .page--omra .line-input:focus{
+  border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,.25);
+}
+
+.omra-create .line-icon-btn, 
+.page--omra .line-icon-btn{
+  position: absolute; top: 23%; right: .5rem; transform: translateY(-10%);
+  width: 28px; height: 28px; display: grid; place-items: center;
+  background: #fff; border: 1px solid #fecaca; border-radius: 6px; cursor: pointer;
+}
+
+.omra-create .line-icon-btn:hover, 
+.page--omra .line-icon-btn:hover{ 
+  background:#fee2e2; 
+  border-color:#fca5a5; 
+}
+
+.omra-create .icon-trash, .page--omra .icon-trash{
+  width: 18px; height: 18px; fill: none; stroke: #ef4444; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Barre de recherche + filtres pour liste Omras */
+.omra-create .searchbar, .page--omra .searchbar{
+  position:relative; display:flex; align-items:center;
+  min-width:260px; width: min(340px, 100%);
+}
+.omra-create .searchbar input, .page--omra .searchbar input{
+  width:100%; padding:9px 32px 9px 34px;
+  border:1px solid #e5e7eb; border-radius:10px; outline:0;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.omra-create .searchbar input:focus, .page--omra .searchbar input:focus{
+  border-color:#bfdbfe; box-shadow:0 0 0 3px rgba(191,219,254,.5);
+}
+.omra-create .searchbar .clear, .page--omra .searchbar .clear{
+  position:absolute; right:6px; width:26px; height:26px;
+  border:0; border-radius:6px; background:#eef2f7; color:#334155; cursor:pointer;
+}
+
+.omra-create .filters, .page--omra .filters{
+  display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  margin:10px 0 6px;
+}
+.omra-create .flt, .page--omra .flt{
+  height:36px; border:1px solid #e5e7eb; border-radius:10px;
+  padding:6px 10px; background:#fff;
+}
+.omra-create .btn.small, .page--omra .btn.small{ padding:6px 10px; border-radius:8px; }
+
+/* RWD prix */
+@media (max-width:1024px){
+  .omra-create .prices-group .row-4,
+  .page--omra .prices-group .row-4{
+    grid-template-columns:1fr 1fr; gap:12px;
+  }
+}
+@media (max-width:720px){
+  .omra-create .prices-group .row-4,
+  .page--omra .prices-group .row-4{
+    grid-template-columns:1fr !important; gap:10px;
+  }
+  .omra-create .prices-group .field,
+  .page--omra .prices-group .field{ width:100%; }
+  .omra-create .prices-group .input-euro,
+  .page--omra .prices-group .input-euro{ display:flex; align-items:center; }
+  .omra-create .prices-group .input-euro input,
+  .page--omra .prices-group .input-euro input{ width:100%; }
+}
+
+
+/* ==============================
+   Effets généraux sur les boutons
+   ============================== */
+
+.omra-create .btn,
+.page--omra .btn,
+.omra-create .btn-add,
+.page--omra .btn-add,
+.omra-create .add-include,
+.page--omra .add-include,
+.omra-create .add-exclude,
+.page--omra .add-exclude {
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Hover principal : léger soulèvement + ombre */
+.omra-create .btn:hover,
+.page--omra .btn:hover,
+.omra-create .btn-add:hover,
+.page--omra .btn-add:hover,
+.omra-create .add-include:hover,
+.page--omra .add-include:hover,
+.omra-create .add-exclude:hover,
+.page--omra .add-exclude:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+  filter: brightness(1.03);
+}
+
+/* Clic (active) : on “appuie” sur le bouton */
+.omra-create .btn:active,
+.page--omra .btn:active,
+.omra-create .btn-add:active,
+.page--omra .btn-add:active,
+.omra-create .add-include:active,
+.page--omra .add-include:active,
+.omra-create .add-exclude:active,
+.page--omra .add-exclude:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+  filter: brightness(0.98);
+}
+
+/* Bouton “Ajouter” principal plus mis en avant */
+.omra-create .btn.btn-lg,
+.page--omra .btn.btn-lg {
+  border-radius: 999px;
+  padding-inline: 1.8rem;
+}
+
+/* ==============================
+   Boutons “Ajouter une ligne”
+   ============================== */
+
+.omra-create .add-include,
+.page--omra .add-include {
+  box-shadow: 0 3px 10px rgba(10, 122, 122, 0.25);
+}
+
+.omra-create .add-exclude,
+.page--omra .add-exclude {
+  box-shadow: 0 3px 10px rgba(225, 135, 0, 0.25);
+}
+
+/* ==============================
+   Bouton fantôme (Annuler)
+   ============================== */
+
+.omra-create .btn.ghost,
+.page--omra .btn.ghost {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.omra-create .btn.ghost:hover,
+.page--omra .btn.ghost:hover {
+  background: #e5edf7;
+  border-color: #94a3b8;
+}
+
+/* ==============================
+   Petits boutons poubelle (ligne inclut/exclut)
+   ============================== */
+
+.omra-create .line-icon-btn,
+.page--omra .line-icon-btn {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.omra-create .line-icon-btn:hover,
+.page--omra .line-icon-btn:hover {
+  background: #fee2e2;
+  border-color: #f97373;
+  transform: translateY(-1px) scale(1.02);
+}
+
+.omra-create .line-icon-btn:active,
+.page--omra .line-icon-btn:active {
+  transform: scale(0.98);
+}
+
+/* petite micro-animation sur l’icône poubelle */
+.omra-create .line-icon-btn:hover .icon-trash,
+.page--omra .line-icon-btn:hover .icon-trash {
+  transform: rotate(-6deg);
+  transition: transform 0.15s ease;
+}
+
+/* ==============================
+   Inputs et selects au focus
+   ============================== */
+
+.omra-create input[type="text"],
+.omra-create input[type="number"],
+.omra-create input[type="date"],
+.omra-create textarea,
+.omra-create select,
+.page--omra input[type="text"],
+.page--omra input[type="number"],
+.page--omra input[type="date"],
+.page--omra textarea,
+.page--omra select {
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.omra-create input[type="text"]:focus,
+.omra-create input[type="number"]:focus,
+.omra-create input[type="date"]:focus,
+.omra-create textarea:focus,
+.omra-create select:focus,
+.page--omra input[type="text"]:focus,
+.page--omra input[type="number"]:focus,
+.page--omra input[type="date"]:focus,
+.page--omra textarea:focus,
+.page--omra select:focus {
+  border-color: #0a7a7a;
+  box-shadow: 0 0 0 2px rgba(10, 122, 122, 0.18);
+  background-color: #f9fffe;
+}
+
+
+/* ===========================
+   Ligne Hôtels (comme Type / Statut)
+   =========================== */
+.omra-create .hotel-line {
+  display: flex;
+  gap: 16px;                /* espace entre Hôtel et Nuits */
+}
+
+/* chaque field prend exactement 50%,
+   comme pour Type d’Omra / Statut */
+.omra-create .hotel-line .field {
+  flex: 1 1 0;
+}
+
+/* wrapper pour select + étoiles */
+.omra-create .hotel-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* le select prend toute la largeur disponible */
+.omra-create .hotel-select-wrap select {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 45px;
+}
+
+/* ⭐ petite zone fixe, ne change pas la largeur du select */
+.omra-create .hotel-stars {
+  flex: 0 0 auto;
+  min-width: 42px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f59e0b;           /* doré */
+  white-space: nowrap;
+}
+
+/* input nuits : même hauteur que le select */
+.omra-create .hotel-line input[type="number"] {
+  height: 45px;
+}
+
+/* Mobile : on passe les champs l’un sous l’autre */
+@media (max-width: 768px) {
+  .omra-create .hotel-line {
+    flex-direction: column;
+  }
+
+  .omra-create .hotel-select-wrap {
+    justify-content: flex-start;
+  }
+
+  .omra-create .hotel-stars {
+    min-width: auto;
+    text-align: left;
+  }
+}
+
+/* Style du focus sur TOUS les champs */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: #0a7a7a !important;
+  box-shadow: 0 0 0 2px rgba(10, 122, 122, 0.18) !important;
+  background-color: #f9fffe !important;
+}
+
+/* Style normal (désactive soulignement Windows/Firefox) */
+input,
+textarea,
+select {
+  outline: none;
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+
+/* 🔶 Focus ORANGE sur les champs “prix n’inclut pas” et “programme jour par jour” */
+.omra-create .prest-exclude input:focus,
+.omra-create .program-row input:focus,
+.omra-create .program-row textarea:focus {
+  border-color: #e18700 !important;
+  box-shadow: 0 0 0 2px rgba(225, 135, 0, 0.2) !important;
+  background-color: #fffaf2 !important;
+  outline: none !important;
+}
+
+

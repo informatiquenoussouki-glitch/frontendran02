@@ -1,0 +1,140 @@
+/* === Style global de la page === */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fa; /* Gris clair moderne */
+  margin: 0;
+  padding: 0;
+}
+
+/* === Conteneur principal du formulaire === */
+.register-page {
+  max-width: 1100px;              /* largeur max */
+  margin: -25px auto;              /* centré */
+  background: #fff;               /* fond blanc */
+  border-radius: 8px;             /* angles arrondis */
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* ombre douce */
+}
+
+/* === Titre principal === */
+.title-page {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+/* === Formulaire en 2 colonnes === */
+.register-form {
+  display: flex;
+  flex-wrap: wrap; /* responsive */
+  gap: 50px;
+}
+
+/* === Colonne individuelle === */
+.form-column {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Section pleine largeur (bas du formulaire) === */
+/* === Section pleine largeur (bas du formulaire) === */
+.form-full {
+  flex: 1 1 100%;
+  margin-top: 5px; /* 🔹 avant : 30px → réduit l’espace vertical */
+}
+
+/* === Titres de sections === */
+h3 {
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 4px;
+  margin-top: 5px;     /* 🔹 espace réduit au-dessus du titre */
+  margin-bottom: 12px; /* 🔹 espace réduit sous le titre */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+/* === Labels des champs === */
+label {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #374151;
+}
+
+/* === Champs input et select === */
+input, select {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* === Effet focus === */
+input:focus, select:focus {
+  outline: none;
+  border-color: #6366f1; /* violet doux */
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+
+/* === Groupe boutons radio === */
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin: 6px 0 10px;
+}
+
+/* === Correction alignement checkbox === */
+.checkbox-group {
+  display: flex;
+  align-items: center;   /* aligne verticalement la case et le texte */
+  justify-content: flex-start; /* aligne à gauche */
+  margin-top: 10px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* petit espace entre la case et le texte */
+  font-size: 14px;
+  color: #374151;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #15803d; /* rend la case verte (optionnel) */
+  cursor: pointer;
+}
+
+/* === Bouton d’inscription === */
+.btn-submit {
+  margin-top: 20px;
+  background: #15803d; /* vert principal */
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+/* Effet hover */
+.btn-submit:hover {
+  background: #166534;
+}
+
+/* === Responsive (mobile) === */
+@media (max-width: 900px) {
+  .register-form {
+    flex-direction: column;
+  }
+  .form-column {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,42 @@
+/* Scope via .hotels-create ou .page--hotels */
+.hotels-create, .page--hotels{
+  --hotel-star:#f59e0b;
+  padding: 20px;
+  background: #f9fafb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Titre interne optionnel */
+.table-card .page-title {
+  margin: 0 0 14px;
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+/* Bouton "Ajouter un hôtel" (si utilisé dans la liste) */
+.page--hotels .btn-add-hotel,
+.hotels-create .btn-add-hotel{
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:.55rem .95rem; border:1px solid #0ea5e9; background:#0ea5e9; color:#fff;
+  border-radius:12px; text-decoration:none; font-weight:600; line-height:1;
+}
+.page--hotels .btn-add-hotel:hover,
+.hotels-create .btn-add-hotel:hover{ filter:brightness(1.05); }
+
+/* Helpers étoiles / sélecteurs composés */
+.page--hotels .stars, .hotels-create .stars{ font-weight:700; color:var(--hotel-star); }
+.page--hotels .hotel-line .select-with-stars,
+.hotels-create .hotel-line .select-with-stars{
+  display:grid; grid-template-columns:1fr auto; gap:.5rem; align-items:center;
+}
+
+/* Fieldset standard utilisé ici via <fieldset class="group"> est déjà dans commun */
+
+/* RWD spécifiques Hôtels (stacker le select + stars) */
+@media (max-width:720px){
+  .page--hotels .hotel-line .select-with-stars,
+  .hotels-create .hotel-line .select-with-stars{
+    grid-template-columns:1fr !important;
+  }
+}

@@ -1,0 +1,301 @@
+/* =========================================================
+   🏨 STYLE DE LA PAGE HÔTEL
+   ========================================================= */
+
+ /* Conteneur global (mêmes principes que Clients) */
+.hotels-container { padding: 20px; background: #f9fafb; min-height: 100vh; box-sizing: border-box; overflow-x: hidden; }
+
+/* Header aligné : titre à gauche, recherche + bouton à droite */
+.hotels-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+
+.page-title { text-align: center; margin-bottom: 20px; color: #1e3a8a; font-weight: 700; font-size: 2rem; /* ✅ inchangé pour PC */ }
+
+.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* Carte blanche avec ombre pour le bloc tableau */
+.card.table-card { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); width: 100%; max-width: 100%; }
+
+/* Tableau (mêmes couleurs / espacements que Clients) */
+.table-wrapper { width: 100%; overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.table-wrapper > table { width: 100%; border-collapse: separate !important; border-spacing: 0; }
+
+/* === Séparateurs verticaux entre colonnes === */
+.tbl.rwd th:not(:last-child), .tbl.rwd td:not(:last-child),
+.hotels-table th:not(:last-child), .hotels-table td:not(:last-child),
+.clients-table th:not(:last-child), .clients-table td:not(:last-child) { border-right: 1px solid #e5e7eb; }
+
+.hotels-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+
+.hotels-table th { background: #e0e7ff; color: #1e3a8a; text-align: left; padding: 10px; white-space: nowrap; }
+.hotels-table td { padding: 10px; border-bottom: 1px solid #e5e7eb; color: #111827; white-space: nowrap; }
+
+.hotel-row { transition: background 0.3s ease; }
+.hotel-row:hover { background: #f3f4f6; /* même hover doux que Clients */ }
+
+/* Cellule actions */
+.actions-header, .actions-cell { text-align: center; }
+
+/* Boutons d’action (mêmes styles que Clients) */
+.icon-btn { 
+  background: transparent !important; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 18px; 
+  color: #2563eb; 
+  margin-right: 8px; 
+  transition: all 0.2s ease; 
+}
+
+/* ✏️ Modifier */
+.icon-btn i.fa-edit { font-size: 18px; color: #2563eb; transition: all 0.2s ease; }
+.icon-btn:hover i.fa-edit { color: #1d4ed8; transform: scale(1.2); }
+
+/* 🗑 Supprimer */
+.icon-btn i.fa-trash-alt { font-size: 18px; color: #888; transition: all 0.2s ease; }
+.icon-btn:hover i.fa-trash-alt { color: #dc2626; transform: scale(1.2); }
+
+/* 👁 Icône "Détails" */
+.icon-btn--view i { font-size: 18px; color: #1e3a8a; transition: all 0.2s ease; }
+.icon-btn--view:hover i { color: #1d4ed8; transform: scale(1.2); }
+
+/* Vidages */
+.empty { text-align: center; color: #666; padding: 12px 0; }
+.global-empty { margin: 8px 0 0; }
+
+/* Barre de recherche moderne + icône (copiée du style Clients) */
+.searchbar-row { display: flex; justify-content: flex-end; margin: 8px 0 12px; }
+.searchbar-row .search-wrapper { width: 320px; position: relative; }
+.searchbar-row .search-icon { position: absolute; top: 50%; left: 12px; transform: translateY(-50%); color: #9ca3af; font-size: 14px; }
+.searchbar-row .search-modern-input { width: 100%; padding: 8px 12px 8px 35px; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; font-size: 14px; color: #111827; outline: none; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+.searchbar-row .search-modern-input:focus { background: #fff; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+
+/* Responsive : pleine largeur et centrée sur mobile */
+@media (max-width: 600px) {
+  .searchbar-row { justify-content: stretch; }
+  .searchbar-row .search-wrapper { width: 100%; }
+}
+
+/* Bouton “Ajouter un Hôtel” */
+.btn-add-hotel { display: inline-flex; align-items: center; gap: 8px; background: #0d99e6; color: #fff; border-radius: 999px; padding: 8px 14px; text-decoration: none; font-weight: 600; transition: transform .15s ease, background .2s ease; }
+.btn-add-hotel:hover { background: #1d4ed8; transform: translateY(-1px); }
+
+/* Responsive */
+@media (max-width: 992px) { .hotels-container { padding: 15px; } .page-title { font-size: 1.4rem; } .search-wrapper { width: 100%; } .header-right { width: 100%; justify-content: space-between; } }
+
+@media (max-width: 600px) {
+  .hotels-header { flex-direction: column; align-items: stretch; }
+  .header-right { flex-direction: column-reverse; align-items: stretch; gap: 10px; }
+  .btn-add-hotel { justify-content: center; }
+  .hotels-table { font-size: 13px; }
+  .hotels-table th, .hotels-table td { padding: 8px; }
+}
+
+h3 { text-align: center; color: #1e3a8a; font-weight: bold; margin-bottom: 15px; font-size: 1.3rem; }
+
+
+
+
+
+/* ======= TABLEAU -> CARTES VERTICALES (mobile) ======= */
+/* ======= MOBILE : mini-tableau 2 colonnes avec vraies lignes ======= */
+@media (max-width: 600px) {
+  /* On repart d'un tableau "carte" propre */
+  .table-wrapper {
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .hotels-table { min-width: 0; border-collapse: separate; border-spacing: 0; }
+  .hotels-table thead { display: none; } /* on masque l'entête */
+
+  /* Chaque ligne devient une carte */
+  .hotels-table tr.hotel-row {
+    display: block;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin: 12px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    overflow: hidden;
+    position: relative !important;
+  }
+  .hotels-table tr.hotel-row::before {
+    content: "";
+    position: absolute;
+    left: calc(12px + 40%);  /* même repère que la colonne Label */
+    top: 0px;
+    bottom: 60px;
+    width: 1px;
+    background: #e5e7eb;     /* ✅ une seule ligne verticale centrale */
+  }
+
+
+  /* Chaque cellule devient une "ligne" avec 2 colonnes : label | valeur */
+  .hotels-table td {
+    display: block;
+    position: relative;
+    /* espace gauche réservé au label (40%) + padding */
+    padding: 12px 12px 12px calc(12px + 40%);
+    border: 0;
+    white-space: normal;
+    color: #111827;
+  }
+
+  /* Ligne horizontale entre les "rows" du mini-tableau */
+  .hotels-table td + td { 
+    border-top: 1px solid #e5e7eb;
+  }
+
+  /* Colonne "Label" injectée via data-label */
+  .hotels-table td::before {
+    content: attr(data-label) " ";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    font-weight: 600;
+    color: #374151;
+  }
+
+ 
+
+  /* Ligne "Actions" : même rendu, mais avec boutons correctement rangés */
+  .hotels-table td.actions-cell {
+    padding: 0; /* on enlève le padding pour centrer plus précisément */
+    height: 60px; /* hauteur fixe pour bien centrer les icônes */
+    display: flex;
+    align-items: center;  /* centre verticalement */
+    justify-content: center; /* centre horizontalement */
+    border-top: 1px solid #e5e7eb;
+  }
+  .hotels-table td.actions-cell::before { content: ""; }
+
+  .actions-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+  .icon-btn {
+    font-size: 20px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Petites harmonisations */
+  .hotels-header { flex-direction: column; align-items: stretch; }
+  .btn-add-hotel { justify-content: center; }
+  .searchbar-row .search-wrapper { width: 100%; }
+
+
+
+   /* Désactive tout soulignement sur les liens d’action */
+  .actions-inline a,
+  .icon-btn,
+  .icon-btn--view {
+    text-decoration: none !important;
+    outline: none !important;
+  }
+
+  /* Supprime le focus/active qui provoque aussi un soulignement bleu */
+  .actions-inline a:focus,
+  .actions-inline a:active {
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+  }
+}
+
+/* ====== MOBILE (≤600px) — ligne verticale via background ====== */
+@media (max-width:600px){
+  .hotels-table thead{display:none}
+  .table-wrapper{border:none;box-shadow:none;background:transparent;overflow:visible}
+
+  /* Carte par ligne */
+  .hotels-table tr.hotel-row{
+    display:block;
+    margin:12px 0;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 4px rgba(0,0,0,.04);
+
+    /* 👉 vertical line (colonne entre label 40% et valeur 60%) */
+    background-image: linear-gradient(#e5e7eb,#e5e7eb);
+    background-size: 1px calc(100% - 60px);   /* s'arrête avant la rangée Actions */
+    background-position: calc(12px + 40%) 0;  /* 40% = largeur de la colonne label */
+    background-repeat: no-repeat;
+  }
+
+  /* Rangées type mini-tableau (Label|Valeur) */
+  .hotels-table td{
+    display:block;
+    position:relative;
+    padding:12px 12px 12px calc(12px + 40%); /* réserve 40% au label injecté */
+    border:0; color:#111827; line-height:1.4;
+  }
+  .hotels-table td + td{border-top:1px solid #e5e7eb}
+
+  /* Labels (issus de data-label) */
+  .hotels-table td::before{
+    content: attr(data-label);
+    position:absolute; left:12px; top:12px; width:40%;
+    font-weight:600; color:#374151; padding-right:8px;
+  }
+
+  /* Rangée Actions centrée */
+  .hotels-table td.actions-cell{
+    border-top:1px solid #e5e7eb; padding:0; height:60px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hotels-table td.actions-cell::before{content:""}
+
+  .actions-inline{display:flex; gap:16px; align-items:center; justify-content:center}
+  .actions-inline a, .icon-btn, .icon-btn--view{
+    text-decoration:none; outline:none; background:#f3f4f6;
+    width:40px; height:40px; border-radius:10px;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+}
+
+
+/* ===== Pagination en bas de la liste d'hôtels ===== */
+.pagination-simple {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.pagination-simple .pager-info {
+  padding: 2px 6px;
+}
+
+.pagination-simple .pager-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.pagination-simple .pager-link:disabled {
+  cursor: default;
+  color: #9ca3af;
+  text-decoration: none;
+}
+

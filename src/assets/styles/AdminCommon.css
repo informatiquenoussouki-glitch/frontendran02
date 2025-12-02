@@ -1,0 +1,294 @@
+/* ==========================================================================
+   LAYOUT GÉNÉRAL (Desktop) — COMMUN
+   ========================================================================== */
+.admin-layout{
+  display:grid;
+  grid-template-columns: 240px 1fr;
+  gap:1.2rem;
+  max-width:1300px;
+  margin:1.5rem auto;
+  padding:0 1rem;
+  align-items:stretch;
+}
+
+/* ==========================================================================
+   SIDEBAR — COMMUN
+   ========================================================================== */
+.sidenav{
+  border:1px solid #eee;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+  display:flex;
+}
+.sidenav-inner{ position:sticky; top:0; padding:.9rem; width:100%; }
+.sidenav-title{ font-weight:800; margin-bottom:.6rem; }
+.sidenav-nav{ display:flex; flex-direction:column; gap:.35rem; }
+
+.navlink{
+  display:block; padding:.55rem .7rem; border-radius:10px;
+  text-decoration:none; color:#1f2937; border:1px solid transparent;
+}
+.navlink:hover{ background:#f7fafc; }
+.navlink.active{ background:#eef6fd; border-color:#bfdbfe; color:#0b5cab; font-weight:700; }
+.navlink.disabled{ opacity:.55; cursor:not-allowed; border:dashed 1px #eee; background:#fafafa; }
+
+.nav-section{
+  margin:.8rem .2rem .35rem; padding-top:.35rem;
+  font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:#64748b; border-top:1px dashed #e5e7eb;
+}
+
+/* ==========================================================================
+   TITRES / CONTENU — COMMUN
+   ========================================================================== */
+.content h2{ margin:.2rem 0 1rem; }
+
+.page-head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:.8rem; margin-bottom:.8rem;
+}
+
+/* ==========================================================================
+   CARDS — COMMUN
+   ========================================================================== */
+.card.table-card{
+  background:#fff; padding:15px; border-radius:10px;
+  box-shadow:0 4px 6px rgba(0,0,0,0.05); width:100%; max-width:100%;
+}
+
+/* ==========================================================================
+   FORM GRID & CHAMPS — COMMUN
+   ========================================================================== */
+.form{ display:grid; gap:.7rem; }
+.row-1{ display:grid; grid-template-columns:1fr; gap:.6rem; }
+.row-2{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+.row-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; }
+
+.field{ display:flex; flex-direction:column; gap:.35rem; }
+.field > label{ font-size:.9rem; font-weight:600; color:#334155; }
+
+input,select,textarea{
+  padding:.55rem; border:1px solid #ccc; border-radius:8px; font-size:16px; /* évite zoom iOS */
+}
+.readonly{ padding:.55rem; border:1px dashed #ddd; border-radius:8px; background:#fafafa; }
+
+.actions{ display:flex; gap:.6rem; flex-wrap:wrap; }
+
+/* Upload image + aperçu */
+.row-image{ grid-template-columns:1fr 260px; align-items:start; }
+.preview-box{
+  width:100%; height:160px; border:1px solid #e5e7eb; border-radius:10px;
+  background:#f8fafc center/cover no-repeat; overflow:hidden;
+}
+
+/* ==========================================================================
+   BOUTONS — COMMUN
+   ========================================================================== */
+.btn{
+  padding:.85rem 1.25rem; font-size:1rem; min-width:120px;
+  border:1px solid #0ea5e9; background:#0ea5e9; color:#fff;
+  border-radius:12px; cursor:pointer;
+}
+.btn.ghost{ background:#fff; color:#0ea5e9; }
+.btn.danger{ border-color:#ef4444; background:#ef4444; }
+button[disabled]{ opacity:.6; cursor:not-allowed; }
+
+/* ==========================================================================
+   TABLES / LISTS — COMMUN
+   ========================================================================== */
+.list-wrap{ grid-column:1 / -1; overflow-x:auto; }
+.tbl{ width:100%; border-collapse:collapse; margin-top:1rem; min-width:760px; }
+.tbl th, .tbl td{ padding:.55rem; border-top:1px solid #eee; }
+
+.action{ text-align:center; white-space:nowrap; }
+.empty{ opacity:.7; margin-top:1rem; }
+
+/* Desktop (>=980px) */
+@media (min-width:980px){
+  .tbl.rwd{
+    border:1px solid #e5e7eb; border-radius:12px;
+    border-collapse:separate; border-spacing:0;
+  }
+  .tbl.rwd thead th{ border-bottom:1px solid #e5e7eb; }
+  .tbl.rwd thead th + th,
+  .tbl.rwd tbody td + td{ border-left:1px solid #e5e7eb; }
+  .tbl.rwd thead th:last-child,
+  .tbl.rwd tbody td:last-child{ border-right:1px solid #e5e7eb; }
+  .tbl.rwd thead th:first-child{ border-top-left-radius:12px; }
+  .tbl.rwd thead th:last-child{  border-top-right-radius:12px; }
+  .tbl.rwd tbody tr:last-child td:first-child{ border-bottom-left-radius:12px; }
+  .tbl.rwd tbody tr:last-child td:last-child{  border-bottom-right-radius:12px; }
+
+  .tbl.rwd th {
+    background: #e0e7ff;
+    color: #1e3a8a;
+    text-align: left;
+    padding: 10px;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile (<=979px) */
+@media (max-width:979px){
+  .tbl.rwd thead{ display:none; }
+
+  .tbl.rwd tbody tr{
+    display:block; background:#fff;
+    border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;
+    margin:12px 0;
+  }
+
+  .tbl.rwd tbody td{
+    display:grid; grid-template-columns:1fr 1fr;   /* 50 | 50 */
+    justify-items:center; align-items:center;
+    gap:12px; padding:12px; position:relative;
+    border:0; text-align:center;
+  }
+  .tbl.rwd tbody td + td{ border-top:1px solid #e5e7eb; }
+
+  .tbl.rwd tbody td::before{
+    content:attr(data-label); font-weight:600; color:#64748b; text-align:center;
+  }
+  .tbl.rwd tbody td::after{
+    content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:#e5e7eb;
+  }
+
+  .tbl.rwd tbody td.action{
+    display:block; text-align:center; border-top:1px solid #e5e7eb;
+  }
+  .tbl.rwd tbody td.action::before,
+  .tbl.rwd tbody td.action::after{ display:none; }
+
+  .tbl.rwd tbody td.action .actions-inline,
+  .tbl.rwd tbody td.action .action-inline{
+    display:flex; justify-content:center; gap:8px; padding:8px 12px 10px;
+  }
+}
+
+/* ==========================================================================
+   GALERIE — COMMUN
+   ========================================================================== */
+.gallery{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:.6rem;
+}
+.thumb{
+  position:relative; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden;
+  background:#f8fafc; aspect-ratio:1/1;
+}
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.thumb-del{
+  position:absolute; top:6px; right:6px;
+  border:none; background:rgba(0,0,0,.5); color:#fff;
+  border-radius:6px; padding:.15rem .35rem; cursor:pointer;
+}
+
+/* ==========================================================================
+   ICONES D’ACTION — COMMUN
+   ========================================================================== */
+.icon-btn{ background: transparent; border: none; cursor: pointer; font-size: 18px; color: #2563eb; margin: 0 8px; transition: all 0.2s ease; }
+.icon-btn svg{ width:18px; height:18px; pointer-events:none; }
+.icon-btn:hover { color: #1d4ed8; transform: scale(1.2); background:#eaf6ff; }
+.icon-btn:active{ transform:translateY(1px); }
+.icon-btn.danger{ color:#9b9a9a; }
+.icon-btn.danger:hover{ background:#fff5f5; }
+.icon-btn.info{  color:#1e3a8a; font-size: 28px; height:18px; align-items: center;}
+.icon-btn.info:hover{ background:#e6f4ff; }
+
+/* ==========================================================================
+   VALIDATION / AIDE — COMMUN
+   ========================================================================== */
+small.error{ color:#ef4444; }
+input.invalid{ border-color:#ef4444; background:#fff7f7; }
+.muted{ color:#64748b; }
+input[type="date"]{ cursor:pointer; }
+
+/* ==========================================================================
+   RWD — COMMUN
+   ========================================================================== */
+@media (max-width:640px){
+  .page-head{ flex-direction:column; align-items:flex-start; }
+  .tbl{ min-width:0; } /* annule min-width en mobile */
+}
+@media (max-width:560px){
+  .icon-btn,
+  .tbl td.actions .icon-btn{ width:32px; height:32px; margin-left:0; }
+  .icon-btn svg,
+  .tbl td.actions .icon-btn svg{ width:16px; height:16px; }
+}
+@media (max-width:360px){
+  .icon-btn{ width:28px; height:28px; }
+  .icon-btn svg{ width:14px; height:14px; }
+}
+
+/* Formulaire en 1 colonne (<=720px) */
+@media (max-width: 720px){
+  .row-2,
+  .row-4{ grid-template-columns: 1fr !important; }
+
+  .field,
+  .field > *{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .actions{
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .form .row-2.row-image{ display:grid; grid-template-columns:1fr !important; gap:12px; }
+  .row-image .preview-box{ height:160px; }
+}
+
+/* Popups thème commun */
+.spu--danger .spu-badge { background:#e11d48 !important; }
+.spu--danger .spu-button{ background:#e11d48 !important; }
+
+
+
+
+.actions .btn {
+  padding: 10px 28px;
+  font-size: 16px;
+  border-radius: 15px;
+  font-weight: 600;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+}
+
+/* Bouton principal (bleu plein) */
+.actions .btn.btn-lg {
+  background: #07A7F0; /* bleu de la capture 2 */
+  border: 1px solid #07A7F0;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.actions .btn.btn-lg:hover {
+  background: #0098db;
+  border-color: #0098db;
+}
+
+/* Bouton Annuler (bleu clair bord bleu) */
+.actions .btn.ghost {
+  background: #E8F6FF; /* fond bleu très clair */
+  border: 2px solid #07A7F0;
+  color: #007dc5;
+}
+
+.actions .btn.ghost:hover {
+  background: #d5eeff;
+  border-color: #0098db;
+  color: #006aa8;
+}
+
+/* Alignement et espace entre les boutons */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+}

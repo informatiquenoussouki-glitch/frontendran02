@@ -1,0 +1,58 @@
+/* === Global reset === */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: #111827;
+  background: #f9fbff; /* ✅ fond harmonisé */
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* === GLOBAL CONTAINER === */
+.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0; /* ✅ espace vertical */
+  max-width: 1200px; /* ✅ aligné sur ton hero */
+  box-sizing: border-box;
+}
+
+/* === RESPONSIVE === */
+@media all and (max-width: 991px) {
+  .clients-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .clients-table-container,
+  .client-details {
+    width: 95%;
+    max-width: 700px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .clients-container {
+    padding: 10px 4%;
+  }
+
+  .clients-table th,
+  .clients-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .client-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}

@@ -1,0 +1,722 @@
+/*style de la page clients*/ 
+/* === CONTAINER GLOBAL === */
+            
+.clients-container { 
+  padding: 20px; 
+  background: #f9fafb; 
+  min-height: 100vh; 
+  box-sizing: border-box; 
+  overflow-x: hidden; 
+} 
+            
+/* === TITRE === */ 
+.page-title { 
+  text-align: center; 
+  margin-bottom: 20px; 
+  color: #1e3a8a; 
+  font-weight: 700; 
+  font-size: 2rem; /* ✅ inchangé pour PC */ 
+} 
+            
+/* === STRUCTURE FLEXIBLE === */ 
+.clients-content {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 25px; 
+  justify-content: center; 
+  align-items: flex-start; 
+}
+      
+/* === TABLEAU === */ 
+.clients-table-container { 
+  flex: 1 1 600px; 
+  background: #fff; 
+  padding: 15px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+  max-width: 100%; 
+  overflow-x: auto; 
+} 
+            
+.table-wrapper {
+  width: 100%; 
+  overflow-x: auto; 
+  border: 1px solid #e5e7eb; /* cadre léger */              
+  border-radius: 12px; /* coins arrondis */ 
+  overflow: hidden; /* masque l'intérieur pour arrondis réels */ 
+  background: #fff; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+} 
+
+/* évite que le <table> casse les arrondis */ 
+.table-wrapper > table { 
+  width: 100%; 
+  border-collapse: separate !important; /* nécessaire pour bien gérer les bordures internes */             
+  border-spacing: 0; /* pas d'espace */ 
+} 
+
+/* === Séparateurs verticaux entre colonnes === */ 
+.clients-table th:not(:last-child),
+.clients-table td:not(:last-child) {
+  border-right: 1px solid #e5e7eb; 
+} 
+            
+.clients-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  min-width: 400px; 
+}             
+.clients-table th { 
+  background: #e0e7ff; 
+  color: #1e3a8a; 
+  text-align: left; 
+  padding: 10px; 
+  white-space: nowrap; 
+}            
+.clients-table td { 
+  padding: 10px; 
+  border-bottom: 1px solid #e5e7eb; 
+  color: #111827; 
+  white-space: nowrap; 
+}            
+.client-row { 
+  cursor: pointer; 
+  transition: background 0.3s ease; 
+}           
+.client-row:hover { background: #f3f4f6; } 
+
+/* === BOUTON SUPPR === */            
+.actions-cell { text-align: center; } 
+
+.delete-btn { 
+  background: transparent; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 18px; 
+  color: #888; 
+  transition: all 0.3s ease; 
+}     
+
+.delete-btn:hover { 
+  color: #dc2626; 
+  transform: scale(1.2); 
+} 
+/* === DÉTAILS === */             
+.client-details { 
+  flex: 1 1 320px; 
+  background: #fff; 
+  border-radius: 10px; 
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+  max-width: 100%; 
+} 
+.client-photo { 
+  width: 100px; 
+  height: 100px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  display: block;
+  margin: 0 auto 10px; 
+} 
+.client-details h3 { 
+  text-align: center; 
+  color: #1e3a8a; 
+  font-weight: bold; 
+  margin-bottom: 15px; 
+  font-size: 1.3rem; 
+} 
+            
+/* === DÉTAILS EN GRILLE === */          
+.details-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  gap: 10px 15px; 
+} 
+            
+.details-grid p { 
+  margin: 5px 0; 
+  color: #374151; 
+  font-size: 1rem; 
+} 
+          
+/* === ✅ RESPONSIVE — TABLETTE === */ 
+@media (max-width: 992px) { 
+  .clients-content { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 25px; 
+    width: 100%; 
+    max-width: 100%; 
+    overflow-x: hidden; 
+  } 
+              
+  .clients-table-container { 
+    flex: 1 1 600px; 
+    background: #fff; 
+    padding: 15px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+    width: 100%; 
+    max-width: 100%; 
+    overflow-x: auto; /* ✅ permet le scroll horizontal uniquement à l’intérieur */
+  } 
+              
+  .clients-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    min-width: 400px; 
+    table-layout: auto; 
+  } 
+  .client-details { 
+    width: 100%; 
+    margin-bottom: 20px; 
+  } 
+  .clients-table th, .clients-table td { 
+    padding: 8px; 
+    font-size: 14px; 
+  } 
+  .client-details h3 { 
+    font-size: 1.1rem; 
+  } 
+  .details-grid { 
+    grid-template-columns: 1fr 1fr; 
+  } 
+} 
+
+/* === ✅ RESPONSIVE — MOBILE === */ 
+@media (max-width: 600px) { 
+  .clients-container { 
+    padding-left: 0 !important;
+    padding-right: 0 !important; 
+  } 
+  .clients-table-container, .client-details { 
+    box-shadow: none; 
+    border-radius: 8px; 
+    padding: 12px; 
+  } 
+  .clients-table { 
+    display: block; 
+    overflow-x: auto; 
+    font-size: 13px; 
+  } 
+  .clients-table th,
+  .clients-table td {
+    border: 1px solid #e5e7eb;  /* lignes internes */
+    padding: 10px 8px;
+    font-size: 14px;
+    text-align: left;
+    vertical-align: middle;
+    background-color: #fff;
+  } 
+
+   /* Nom de la colonne à gauche (visuellement bien séparé) */
+  .clients-table th {
+    background: #f3f4f6;
+    color: #1e3a8a;
+    font-weight: 600;
+  }
+
+  .client-photo { 
+    width: 70px; 
+    height: 70px; 
+  } 
+  .details-grid { 
+    grid-template-columns: 1fr; 
+    gap: 8px; 
+  } 
+  .details-grid p { font-size: 13px; } 
+  .page-title { font-size: 1.3rem; } 
+}
+
+/* === 🌍 VERSION FINALE RESPONSIVE === */
+            
+/* === TABLETTES (jusqu'à 992px) === */ 
+            
+@media (max-width: 992px) { 
+  .clients-container { padding: 15px; } 
+  .page-title { font-size: 1.6rem; text-align: center; } 
+  .clients-content { flex-direction: column; align-items: center; gap: 20px; } 
+  .clients-table-container, .client-details { width: 100%; max-width: 750px; } 
+  
+  .client-details h3 { font-size: 1.1rem; } 
+  .details-grid { grid-template-columns: 1fr 1fr; }           
+}
+            
+/* === SMARTPHONES (jusqu'à 768px) === */ 
+@media (max-width: 768px) { 
+  .clients-container { padding: 10px; } 
+  .page-title { font-size: 1.4rem; margin-bottom: 15px; }               
+  .clients-content { flex-direction: column; gap: 15px; }               
+  .clients-table-container, .client-details { padding: 12px; border-radius: 8px; box-shadow: none; } 
+
+  
+               
+  .client-photo { width: 80px; height: 80px; } 
+  .details-grid { grid-template-columns: 1fr; gap: 10px; } 
+  .details-grid p { font-size: 13px; }            
+} 
+            
+/* === Barre de recherche alignée avec le titre === */ 
+.clients-header {            
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; /* ✅ titre à gauche, recherche à droite */            
+  margin-bottom: 15px; 
+  flex-wrap: wrap; 
+  gap: 10px; 
+} 
+            
+.clients-header h3 { 
+  color: #1e3a8a; 
+  font-size: 18px; 
+  font-weight: 600; 
+} 
+/* === Barre moderne avec icône === */           
+.search-wrapper { position: relative; width: 280px; } 
+.search-icon { 
+  position: absolute; 
+  top: 50%; 
+  left: 12px; 
+  transform: translateY(-50%); 
+  color: #9ca3af; 
+  font-size: 14px; 
+}            
+.search-modern-input {            
+  width: 100%; 
+  padding: 8px 12px 8px 35px; 
+  border-radius: 20px; 
+  border: 1px solid #e5e7eb; 
+  background: #f9fafb; 
+  font-size: 14px; 
+  color: #111827; 
+  outline: none; 
+  transition: all 0.3s ease; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+} 
+            
+.search-modern-input:focus {             
+  background: #fff; 
+  border-color: #2563eb; 
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);             
+}
+            
+/* ✅ Responsive : barre centrée sur mobile */             
+@media (max-width: 768px) { 
+  .clients-header { flex-direction: column; align-items: stretch; } 
+  .search-wrapper { width: 100%; } 
+} 
+            
+/* === PETITS MOBILES (jusqu'à 480px) === */
+@media (max-width: 480px) {               
+  .page-title { font-size: 1.2rem; } 
+ 
+  .client-photo { width: 65px; height: 65px; } 
+  .client-details { padding: 10px; } 
+  .details-grid p { font-size: 12px; } 
+} 
+            
+/* === GRAND ÉCRANS (à partir de 1200px) === */ 
+@media (min-width: 1200px) { 
+  .clients-container { max-width: 1400px; margin: 0 auto; } 
+} 
+            
+/* 🔵 Icône "Modifier" ajoutée — style minimal cohérent avec ton tableau */             
+.edit-btn {             
+  background: transparent; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 18px; 
+  color: #2563eb; 
+  margin-right: 8px; 
+  transition: all 0.2s ease;            
+}             
+.edit-btn:hover { color: #1d4ed8; transform: scale(1.2); } 
+            
+/* 🗑 Bouton Supprimer (inchangé) */            
+.delete-btn { 
+  background: transparent; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 18px; 
+  color: #888; 
+  transition: all 0.3s ease; 
+}             
+.delete-btn:hover { color: #dc2626; transform: scale(1.2); } 
+
+/* === Effet général SweetAlert2 conservé === */ 
+/* === Effet SweetAlert2 conservé === */ 
+/* === Effet SweetAlert2 conservé === */            
+.swal2-popup.client-popup {            
+  border-radius: 14px !important; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) !important;            
+  padding: 25px !important; 
+  font-family: "Poppins", sans-serif !important; 
+  backdrop-filter: blur(6px);            
+  transition: all 0.3s ease-in-out;             
+} 
+            
+/* === Formulaire compact et aligné === */             
+.compact-form { display: flex; flex-direction: column; gap: 10px; } 
+.form-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }            
+.form-row label { flex: 0 0 35%; font-size: 13px; font-weight: 500; color: #333; text-align: right; }            
+.compact-input { 
+  flex: 1; 
+  border: 1px solid #d1d5db; 
+  border-radius: 8px; 
+  background: #fff; 
+  padding: 6px 10px; 
+  font-size: 13px; 
+  transition: all 0.25s; 
+}            
+.compact-input:focus { 
+  outline: none; 
+  border-color: #6366f1; 
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25); 
+  background: #fafaff; 
+} 
+            
+/* === Boutons === */ 
+.swal2-actions { 
+  display: flex !important; 
+  justify-content: center !important; 
+  gap: 12px !important; 
+  margin-top: 15px !important; 
+} 
+.btn-save { 
+  background-color: #4f46e5 !important; 
+  color: white !important; 
+  border-radius: 8px !important; 
+  font-weight: 500 !important; 
+  padding: 8px 22px !important; 
+  font-size: 14px !important; 
+  transition: 0.2s; 
+} 
+            
+.btn-save:hover { background-color: #4338ca !important; } 
+.btn-cancel { 
+  background-color: #6b7280 !important; 
+  color: white !important; 
+  border-radius: 8px !important; 
+  font-weight: 500 !important; 
+  padding: 8px 22px !important; 
+  font-size: 14px !important; 
+}
+.btn-cancel:hover { background-color: #4b5563 !important; }
+
+
+/* ===== Responsive table: même tableau, design mobile stacké ===== */
+@media (max-width: 768px) {
+
+   /* 1) Couper toute largeur > écran ET toute propagation d'overflow */
+  html, body, #app {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none;    /* évite le pan latéral */
+  }
+
+  /* Cache l’en-tête de colonnes */
+  .clients-table thead {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; border: 0; padding: 0;
+    clip: rect(0 0 0 0); overflow: hidden;
+  }
+
+  /* Chaque ligne devient une "carte" */
+  .clients-table tr {
+    display: block;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin-bottom: 12px;
+    padding: 8px 10px;
+  }
+
+  /* Les cellules deviennent des lignes label + valeur */
+  .clients-table td {
+    display: grid;
+    grid-template-columns: 120px 1fr;  /* label | valeur */
+    align-items: center;
+    gap: 8px;
+    text-align: left !important;
+    border-bottom: none;
+    padding: 10px 6px;
+    white-space: normal;
+  }
+
+  /* Insère le label depuis l’attribut data-label */
+  .clients-table td::before {
+    content: attr(data-label);
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  /* Valeur (le contenu réel du TD) */
+  .clients-table td {
+    color: #111827;
+    font-size: 14px;
+  }
+
+  /* Cellule des actions : centrée, boutons côte à côte */
+  .clients-table td.actions-cell {
+    grid-template-columns: 1fr;
+    padding-top: 6px;
+    padding-bottom: 2px;
+  }
+  .clients-table td.actions-cell::before {
+    content: attr(data-label);
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .clients-table td.actions-cell .edit-btn,
+  .clients-table td.actions-cell .delete-btn {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  /* Arrondis et ombres du wrapper inutiles sur mobile */
+  .table-wrapper {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* 2) Le container principal ne peut pas dépasser 100vw */
+  .clients-container,
+  .clients-content,
+  .clients-table-container {
+    width: 100vw;
+    max-width: 100vw;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    touch-action: pan-y;            /* autorise seulement le scroll vertical */
+  }
+  
+  
+
+
+/* Aucune dérive horizontale sur la page Clients */
+  .clients-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+  }
+
+  .clients-content,
+  .clients-table-container {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    touch-action: pan-y;            /* scroll vertical uniquement */
+  }
+
+  /* Le wrapper du tableau ne crée pas de scroll interne */
+  .table-wrapper {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-x: hidden !important;
+  }
+
+  /* Le même tableau, sans min-width qui force le débord */
+  .clients-table {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;        /* 🔑 supprime la source de scroll horizontal */
+    table-layout: fixed;             /* évite les débords de contenu */
+    overflow-x: auto !important;
+    white-space: normal;             /* autorise les retours à la ligne */
+    font-size: 13px; 
+    border-collapse: collapse;
+   
+  }
+
+
+  /* Cache l’en-tête, on utilisera data-label pour les libellés */
+  .clients-table thead {
+    display: none !important;
+  }
+
+  /* Chaque ligne devient une "carte" */
+  .clients-table tr {
+    display: block;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05);
+    margin: 12px 12px;              /* marge haut/bas + petit retrait latéral */
+    padding: 8px 10px;
+    max-width: calc(100vw - 24px);  /* sécurité anti-débordement */
+  }
+
+  /* Cellules = lignes Label | Valeur */
+  .clients-table td {
+    display: grid;
+    grid-template-columns: 110px 1fr;  /* label | valeur */
+    gap: 8px;
+    align-items: center;
+    text-align: left !important;
+    border-bottom: none;
+    padding: 10px 6px;
+    white-space: normal;
+    overflow-wrap: anywhere;           /* casse emails / chaînes longues */
+    word-break: break-word;
+  }
+
+  /* Libellé depuis l’attribut data-label (ajouté dans le <td>) */
+  .clients-table td::before {
+    content: attr(data-label);
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  /* Cellule des actions */
+  .clients-table td.actions-cell {
+    grid-template-columns: 1fr;
+    padding-top: 6px;
+    padding-bottom: 2px;
+  }
+  .clients-table td.actions-cell::before {
+    content: attr(data-label);
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* Barre de recherche pleine largeur et centrée */
+  .clients-header { padding: 0 12px; }
+  .search-wrapper { width: 100%; }
+
+  /* Petites sécurités */
+  img, table { max-width: 100%; height: auto; }
+  .edit-btn, .delete-btn { min-width: 38px; }
+
+  /* Alignement des boutons d’action au centre */
+  .actions-cell {
+    text-align: center !important;
+  } 
+  
+  /* Coins arrondis au tableau complet */
+  .table-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+}
+
+
+
+:root {
+  /* 👉 change seulement cette valeur (ex: 340px, 380px, 420px...) */
+  --clients-mobile-max: 360px;
+}
+
+@media (max-width: 768px) {
+  /* pas de marge latérale globale */
+  .clients-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-x: hidden;
+  }
+
+  /* le contenu est centré et limité à la largeur souhaitée */
+  .clients-content,
+  .clients-table-container,
+  .client-details {
+    width: 100%;
+    max-width: var(--clients-mobile-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* optionnel : un look “carte” un peu plus propre sur mobile */
+  .clients-table-container,
+  .client-details,
+  .table-wrapper {
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  }
+
+  .clients-table td {
+    border-right: 1px solid #e5e7eb; /* ligne verticale */
+  }
+
+  /* Supprime la bordure de droite sur la dernière colonne */
+  .clients-table td:last-child {
+    border-right: none;
+  }
+
+  /* Garde les bordures horizontales existantes */
+  .clients-table tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Facultatif : léger arrondi + ombre douce */
+  .clients-table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+
+
+/* =========================
+   CLIENTS — Mobile : vraie ligne verticale au milieu
+   ========================= */
+@media (max-width: 768px) {
+  :root { --split-col: 120px; }      /* largeur de la colonne "libellé" */
+
+  .clients-table td {
+    /* 2 colonnes : libellé | valeur */
+    display: grid;
+    grid-template-columns: var(--split-col) 1fr;
+    gap: 8px;
+    align-items: center;
+
+    /* horizontales (tu en as déjà, on renforce ici) */
+    border-bottom: 1px solid #e5e7eb;
+
+    /* la ligne verticale au milieu (continue ligne à ligne) */
+    background-image: linear-gradient(#e5e7eb, #e5e7eb);
+    background-repeat: no-repeat;
+    background-position: var(--split-col) 0;   /* X = largeur colonne gauche */
+    background-size: 1px 100%;                 /* 1px de large, 100% hauteur */
+
+    /* lisibilité */
+    padding: 10px 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* libellé injecté si tu utilises data-label */
+  .clients-table td::before {
+    content: attr(data-label);
+    color: #6b7280;
+    font-size: 13px;
+    padding-right: 8px;
+  }
+
+  /* dernière ligne sans trait bas */
+  .clients-table tr:last-child td { border-bottom: none; }
+}
+
+
+
