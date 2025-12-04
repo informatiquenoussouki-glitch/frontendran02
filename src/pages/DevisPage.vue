@@ -203,7 +203,7 @@ const fetchDevis = async () => {
 
     console.log("📡 Envoi des paramètres :", { year, month, type });
 
-    const res = await axios.get("/admin/devis", {
+    const res = await axios.get("/admin/devis", { 
       params: { year, month, type },
     });
 
@@ -335,9 +335,9 @@ const sauvegarderEtat = async () => {
         newEtat === "acompte_paye" ? "Acompte payé" :
         newEtat === "paye" ? "Payé" :
         newEtat === "expire" ? "Expiré" :
-          newEtat === "annule" ? "Annulé" :
+        newEtat === "annule" ? "Annulé" :
 
-        "Annulé";
+           "En attente";   // 👈 nouveau défaut
 }
 
 

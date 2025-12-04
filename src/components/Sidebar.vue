@@ -193,7 +193,7 @@
 
       <!-- 📅 Réservations -->
       <router-link
-        to="/admin/reservation"
+        to="/admin/devis"
         class="menu-item h2"
         active-class="active"
       >

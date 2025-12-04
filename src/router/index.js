@@ -31,6 +31,13 @@ import AdminHotelsList from "../components/admin/AdminHotel/AdminHotelsList.vue"
 import AdminHotelCreate from "../components/admin/AdminHotel/AdminHotelCreate.vue";
 import AdminHotelEdit from "../components/admin/AdminHotel/AdminHotelEdit.vue";
 
+
+import ReservationForm from "../pages/ReservationForm.vue"; // ✅ dossier "pages"
+
+// 🔹 Page Admin Devis
+import DevisPage from "../pages/DevisPage.vue";
+
+
 const routes = [
   // 🔸 Pages principales
   { path: "/", name: "Home", component: Home },
@@ -63,6 +70,8 @@ const routes = [
   { path: "/admin/hotel/edit/:id", name: "admin-hotels-edit", component: AdminHotelEdit, props: true },
   { path: "/hotel/:id", name: "hotel-view", component: HotelView, props: true },
 
+  { path: "/admin/devis", name: "AdminDevis", component: DevisPage },
+
   {
   path: '/admin/testimonials',
   name: 'AdminTestimonials',
@@ -82,6 +91,28 @@ const routes = [
 
   // 🔸 Page 404
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
+
+  {
+    path: "/reservations/:id", // ✅ dynamique + cohérent avec ton lien
+    name: "ReservationForm",
+    component: ReservationForm,
+    props: true,
+  },
+
+
+{
+  path: '/payment-success',
+  name: 'payment.success',
+  component: () => import('../pages/SuccessPayment.vue')
+},
+
+{
+  path: '/payment-cancel',
+  name: 'payment.cancel',
+  component: () => import('../pages/CancelPayment.vue')
+},
+
+
 ];
 
 const router = createRouter({

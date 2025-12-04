@@ -448,11 +448,11 @@ const handleSubmit = async () => {
       showConfirmButton: false,
     });
 
+    if (form.value.option === "devis" && data.devis && data.devis.pdf_url) {
+      window.open(data.devis.pdf_url, "_blank");
+    }
 
-
-
-
- /* ✅ 3) Si l’utilisateur choisit PAYER un acompte */
+    /* ✅ 3) Si l’utilisateur choisit PAYER un acompte */
     if (form.value.option === "acompte") {
       try {
         const payloadStripe = {
@@ -468,12 +468,12 @@ const handleSubmit = async () => {
           return; // stop — pas de génération de devis
         }
       } catch (error) {
-        console.error("❌ Erreur Stripe :", error);
+        console.error("❌ Erreur Stripe :", error.response?.data || error.message);
 
         Swal.fire({
           icon: "error",
           title: "Erreur paiement",
-          text: "Impossible d’ouvrir la page de paiement Stripe.",
+          text: error.response?.data?.message || "Impossible d’ouvrir la page de paiement Stripe.",
         });
 
         return;

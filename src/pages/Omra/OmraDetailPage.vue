@@ -348,13 +348,13 @@ const tripText = computed(() => omra.value?.trip || '')
             </div>
 
             <!-- Variante RouterLink (si tu as une page de réservation) -->
-            <RouterLink class="btn-cta">
+            <router-link :to="`/reservations/${omra.id}`" class="btn-cta">
               <!-- petite icône -->
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                 <path d="M8 7h8M6 11h12M6 15h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
               Réserver maintenant
-            </RouterLink>
+            </router-Link>
           </div>
         </div>
       </header>
